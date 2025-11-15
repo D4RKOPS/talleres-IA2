@@ -1,0 +1,43 @@
+@startuml
+
+class User {
+    +id: UUID
+    +email: String
+    +passwordHash: String
+    --
+    +authenticate(password: String): Boolean
+}
+
+class Task {
+    +id: UUID
+    +userId: UUID
+    +title: String
+    +description: String
+    +isCompleted: Boolean
+    +createdAt: DateTime
+    +updatedAt: DateTime
+    +reminderAt: DateTime
+    --
+    +markCompleted(): void
+    +update(title: String, description: String, reminderAt: DateTime): void
+}
+
+class TaskService {
+    --
+    +createTask(userId: UUID, title: String, description: String, reminderAt: DateTime): Task
+    +editTask(taskId: UUID, title: String, description: String, reminderAt: DateTime): Task
+    +deleteTask(taskId: UUID): void
+    +markCompleted(taskId: UUID): Task
+    +getTasks(userId: UUID): List<Task>
+}
+
+class AuthService {
+    --
+    +login(email: String, password: String): User
+}
+
+User "1" --> "0..*" Task : "posee"
+TaskService --> Task : "gestiona >"
+AuthService --> User : "valida >"
+
+@enduml

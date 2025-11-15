@@ -1,0 +1,23 @@
+@startuml
+left to right direction
+actor "Usuario" as User
+
+rectangle QuickTask {
+    usecase "Autenticarse" as UC_Auth
+    usecase "Ver lista de tareas" as UC_ViewTasks
+    usecase "Crear tarea" as UC_CreateTask
+    usecase "Editar tarea" as UC_EditTask
+    usecase "Eliminar tarea" as UC_DeleteTask
+    usecase "Marcar tarea como completada" as UC_CompleteTask
+    usecase "Configurar recordatorio\nde una tarea" as UC_SetReminder
+}
+
+User --> UC_Auth
+User --> UC_ViewTasks
+User --> UC_CreateTask
+User --> UC_EditTask
+User --> UC_DeleteTask
+User --> UC_CompleteTask
+User --> UC_SetReminder
+
+@enduml
